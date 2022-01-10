@@ -31,5 +31,4 @@
 
   ## Questions
   * Find me on Github: [mikebashford](https://github.com/mikebashford)
-  </br>
   * Email me with questions at: mikebashford@gmail.com
