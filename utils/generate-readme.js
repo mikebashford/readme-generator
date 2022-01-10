@@ -33,7 +33,6 @@ generateReadme = (data) =>
 
   ## Questions
   * Find me on Github: [${data.username}](https://github.com/${data.username})
-  </br>
   * Email me with questions at: ${data.email}`;
 }
 
