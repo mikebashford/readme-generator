@@ -1,16 +1,17 @@
 // TODO: Include packages needed for this application
-var inquirer = require('inquirer');
-var fs = require('fs');
-// TODO: Create an array of questions for user input
-const questions = ['What is the title of the project?', 'Describe what the project does.', 'How do I install this project?', 'How do I use this project?', 'Who contributed to the project?', 'How do I use the test functions involved in the project?', 'Which license would you like to add?', 'What is your github username?', 'What is your email?'];
+const inquirer = require('inquirer');
+const fs = require('fs');
+const util = require('util');
+const generateReadme = require("./utils/generate-readme");
 
-const promptUser = () =>
+// TODO: Create an array of questions for user input
+const questions = () =>
 {
   return inquirer.prompt([
     {
       type: 'input',
       name: 'title',
-      message: questions[0],
+      message: 'What is the title of the project?',
       validate: titleInput =>
       {
         if(titleInput)
@@ -26,7 +27,7 @@ const promptUser = () =>
     {
       type: 'input',
       name: 'description',
-      message: questions[1],
+      message: 'Describe what the project does.',
       validate: descriptionInput =>
       {
         if(descriptionInput)
@@ -42,7 +43,7 @@ const promptUser = () =>
     {
       type: 'input',
       name: 'install',
-      message: questions[2],
+      message: 'How do I install this project?',
       validate: installInput =>
       {
         if(installInput)
@@ -57,8 +58,8 @@ const promptUser = () =>
     },
     {
       type: 'input',
-      name: 'use',
-      message: questions[3],
+      name: 'usage',
+      message: 'How do I use this project?',
       validate: useInput =>
       {
         if(useInput)
@@ -74,7 +75,7 @@ const promptUser = () =>
     {
       type: 'input',
       name: 'contributors',
-      message: questions[4],
+      message: 'Who contributed to the project?',
       validate: contributorsInput =>
       {
         if(contributorsInput)
@@ -90,7 +91,7 @@ const promptUser = () =>
     {
       type: 'input',
       name: 'test',
-      message: questions[5],
+      message: 'How do I use the test functions involved in the project?',
       validate: testInput =>
       {
         if(testInput)
@@ -104,25 +105,23 @@ const promptUser = () =>
       }
     },
     {
-      type: 'input',
+      type: 'list',
       name: 'license',
-      message: questions[6],
-      validate: licenseInput =>
-      {
-        if(licenseInput)
-        {
-          return true;
-        }
-        else{
-          console.log('Please select the license you would like to use.');
-          return false;
-        }
-      }
+      message: 'Which license would you like to add?',
+      choices: [
+        "Apache",
+        "Academic",
+        "GNU",
+        "ISC",
+        "MIT",
+        "Mozilla",
+        "Open"
+      ]
     },
     {
       type: 'input',
       name: 'username',
-      message: questions[7],
+      message: 'What is your github username?',
       validate: usernameInput =>
       {
         if(usernameInput)
@@ -138,7 +137,7 @@ const promptUser = () =>
     {
       type: 'input',
       name: 'email',
-      message: questions[8],
+      message: 'What is your email?',
       validate: emailInput =>
       {
         if(emailInput)
@@ -152,15 +151,41 @@ const promptUser = () =>
       }
     },
   ])
-}
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
+};
 
-}
+
+
+// TODO: Create a function to write README file
+function writeToFile(fileName, data) 
+{
+  return new Promise((resolve, reject) =>
+  {
+    fs.writeFile(fileName, data, err =>
+    {
+      if(err)
+      {
+        reject(err);
+        return;
+      }
+      resolve({
+        ok:true, 
+        message: 'Readme created!'
+      });
+    });
+  });
+};
 
 // TODO: Create a function to initialize app
 function init() {
-  promptUser();
+  questions()
+  .then(data =>
+    {
+      return generateReadme(data);
+    })
+  .then( generateReadme =>
+  {
+    writeToFile("./dist/README.md", generateReadme);
+  });
 }
 
 // Function call to initialize app
