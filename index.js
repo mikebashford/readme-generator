@@ -19,7 +19,7 @@ const questions = () =>
           return true;
         }
         else{
-          console.log('Please enter the title of the project.');
+          console.log('Please enter the title of the project.');G
           return false;
         }
       }

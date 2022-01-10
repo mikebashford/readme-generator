@@ -3,7 +3,7 @@
   ![badge](https://img.shields.io/badge/license-Compliant-blue)
 
   ## Purpose
-   Generates a readme based off of user input to prompt questions.
+  Generates a readme based on user input.
 
   ## Table of Contents
   * [Installation](#installation)
@@ -13,10 +13,10 @@
   * [Installation](#installation)
 
   ## Installation
-  Install the project by clone the repo.
+  Install the project by clone the repository.
 
   ## Usage
-  To use the project run in terminal.
+  To use the project run node index.
 
   ## Credits
   Made by Mike Bashford
@@ -27,7 +27,7 @@
   This application is covered by the Compliant license.
 
   ## Tests
-  Available tests include: none available.
+  Available tests include: none.
 
   ## Questions
   * Find me on Github: [mikebashford](https://github.com/mikebashford)
