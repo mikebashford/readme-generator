@@ -110,12 +110,9 @@ const questions = () =>
       message: 'Which license would you like to add?',
       choices: [
         "Apache",
-        "Academic",
-        "GNU",
-        "ISC",
         "MIT",
-        "Mozilla",
-        "Open"
+        "GPL",
+        "Compliant"
       ]
     },
     {

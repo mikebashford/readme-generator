@@ -1,33 +1,40 @@
 generateReadme = (data) =>
 {
-  return `${data.title}
-  ##Description
+  return `
+  ## ${data.title}
+  ![badge](https://img.shields.io/badge/license-${data.license}-blue)
+
+  ## Purpose
   ${data.description}
-  ##Table of Contents
-  *[Installation](#installation)
-  *[Usage](#usage)
-  *[Credits](#credits)
-  *[License](#license)
-  *[Installation](#installation)
-  
-  ##Installation
+
+  ## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Credits](#credits)
+  * [License](#license)
+  * [Installation](#installation)
+
+  ## Installation
   Install the project by ${data.install}
 
-  ##Usage
+  ## Usage
   To use the project ${data.usage}
 
-  ##Credits
-  ${data.contributors}
+  ## Credits
+  Made by ${data.contributors}
 
-  ##License
-  ${data.license}
+  ## License
+  ![badge](https://img.shields.io/badge/license-${data.license}-blue)
+  </br>
+  This application is covered by the ${data.license} license.
 
-  ##Tests
+  ## Tests
   Available tests include: ${data.test}
 
-  ##Questions
-  Find me on Github: ${data.username}
-  Email me with questions at: ${data.email}`;
+  ## Questions
+  * Find me on Github: [${data.username}](https://github.com/${data.username})
+  </br>
+  * Email me with questions at: ${data.email}`;
 }
 
   module.exports = generateReadme;
